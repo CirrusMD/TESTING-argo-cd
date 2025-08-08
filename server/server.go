@@ -1177,6 +1177,7 @@ func (server *ArgoCDServer) newHTTPServer(ctx context.Context, port int, grpcWeb
 				"application/grpc-web+proto": grpcWebHandler,
 			},
 		},
+		ReadTimeout: 5 * time.Second,
 	}
 
 	// HTTP 1.1+JSON Server
@@ -1387,6 +1388,7 @@ func newRedirectServer(port int, rootPath string) *http.Server {
 			}
 			http.Redirect(w, req, target, http.StatusTemporaryRedirect)
 		}),
+		ReadTimeout: 5 * time.Second,
 	}
 }
 
